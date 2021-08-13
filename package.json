@@ -1,0 +1,31 @@
+{
+    "name": "simple-rest-api",
+    "version": "1.0.0",
+    "description": "Simple rest api with expressjs",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marzuk-zarir/simple-rest-api.git"
+    },
+    "keywords": [
+        "rest-api",
+        "express",
+        "express-rest-api"
+    ],
+    "author": "Marzuk Zarir",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/marzuk-zarir/simple-rest-api/issues"
+    },
+    "homepage": "https://github.com/marzuk-zarir/simple-rest-api#readme",
+    "devDependencies": {
+        "nodemon": "^2.0.12"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "morgan": "^1.10.0"
+    }
+}
