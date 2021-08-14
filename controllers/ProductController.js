@@ -1,23 +1,57 @@
+const Product = require('../models/Product')
+const product = new Product()
 const controller = {}
 
 controller.getAllProducts = (req, res) => {
-    res.send('All products')
+    res.json(product.getAllProducts())
 }
 
 controller.getSingleProduct = (req, res) => {
-    res.send('Get a single product')
+    const getProduct = product.getProductById(+req.params.id)
+    if (getProduct) {
+        res.json(getProduct)
+    } else {
+        res.status(404).json({ error: 'Product id not found' })
+    }
 }
 
 controller.createSingleProduct = (req, res) => {
-    res.send('Create a single product')
+    const { name, price, description } = req.body
+
+    if (name && price && description) {
+        res.json(product.createProduct({ name, price, description }))
+    } else {
+        res.status(400).send({ error: 'There was a problem in your request' })
+    }
 }
 
 controller.updateSingleProduct = (req, res) => {
-    res.send('Update a single product')
+    const { name, price, description } = req.body
+
+    if (name || price || description) {
+        const updateProduct = product.updateProductById(+req.params.id, {
+            name,
+            price,
+            description,
+        })
+        if (updateProduct) {
+            res.json(updateProduct)
+        } else {
+            res.status(404).json({ error: 'Product id not found' })
+        }
+    } else {
+        res.status(400).send({ error: 'There was a problem in your request' })
+    }
 }
 
 controller.deleteSingleProduct = (req, res) => {
-    res.send('Delete a single product')
+    const deleteProduct = product.deleteProductById(+req.params.id)
+
+    if (deleteProduct) {
+        res.json(deleteProduct)
+    } else {
+        res.status(404).json({ error: 'Product id not found' })
+    }
 }
 
 module.exports = controller
